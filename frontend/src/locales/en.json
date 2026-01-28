@@ -1,0 +1,117 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "login": "Log in",
+    "signup": "Sign up",
+    "logout": "Logout",
+    "add_product": "Add Product"
+  },
+  "home": {
+    "new_collection": "New Collection 2024",
+    "hero_title": "Elevate Your",
+    "hero_subtitle": "Daily Lifestyle",
+    "hero_desc": "Discover a curated selection of premium goods designed to enhance your everyday experience. Quality meets aesthetics.",
+    "shop_now": "Shop Collection",
+    "learn_more": "Learn More",
+    "top_rated": "Top Rated",
+    "quality_5_star": "5-Star Quality",
+    "features": {
+        "shipping": "Free Shipping",
+        "shipping_desc": "On all orders over $100",
+        "secure": "Secure Payment",
+        "secure_desc": "100% secure payment",
+        "support": "24/7 Support",
+        "support_desc": "Dedicated support team"
+    },
+    "featured_title": "Featured Products",
+    "featured_desc": "Check out what's trending this week.",
+    "view_all": "View All"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "empty_desc": "Looks like you haven't added anything to your cart yet. Browse our products to find something you'll love.",
+    "start_shopping": "Start Shopping",
+    "remove": "Remove",
+    "summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total": "Total",
+    "checkout": "Checkout",
+    "free": "Free"
+  },
+  "products": {
+    "title": "Our Collection",
+    "subtitle": "Discover handpicked items for your lifestyle.",
+    "search": "Search products...",
+    "filters": "Filters",
+    "price": "Price",
+    "add_to_cart": "Add to Cart",
+    "confirm_delete": "Are you sure you want to delete this product?"
+  },
+  "auth": {
+    "signin_title": "Sign in to your account",
+    "signup_title": "Create your account",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email address",
+    "signin_btn": "Sign in",
+    "register_btn": "Register",
+    "no_account": "Don't have an account? Register",
+    "has_account": "Already have an account? Sign in",
+    "hero_badge": "New Collection"
+  },
+  "add_product": {
+    "title": "Add New Product",
+    "name": "Product Name",
+    "price": "Price",
+    "category": "Category",
+    "image": "Image URL",
+    "description": "Description",
+    "cancel": "Cancel",
+    "submit": "Add Product",
+    "categories": {
+        "Audio": "Audio",
+        "Furniture": "Furniture",
+        "Gaming": "Gaming",
+        "Wearables": "Wearables",
+        "Accessories": "Accessories",
+        "Bags": "Bags",
+        "Other": "Other"
+    }
+  },
+  "items": {
+    "1": {
+      "name": "Premium Wireless Headphones",
+      "description": "Experience high-fidelity sound with our premium wireless headphones. Featuring active noise cancellation and 30-hour battery life.",
+      "category": "Audio"
+    },
+    "2": {
+      "name": "Ergonomic Office Chair",
+      "description": "Work in comfort with this fully adjustable ergonomic office chair. Mesh back for breathability and lumbar support.",
+      "category": "Furniture"
+    },
+    "3": {
+      "name": "Mechanical Gaming Keyboard",
+      "description": "Tactile mechanical switches and customizable RGB lighting for the ultimate gaming experience. Durable aluminum frame.",
+      "category": "Gaming"
+    },
+    "4": {
+      "name": "Smart Fitness Watch",
+      "description": "Track your workouts, heart rate, and sleep with precision. Water-resistant and features a vibrant OLED display.",
+      "category": "Wearables"
+    },
+    "5": {
+      "name": "Designer Aviator Sunglasses",
+      "description": "Protect your eyes in style with these premium aviator sunglasses. Polarization for reduced glare.",
+      "category": "Accessories"
+    },
+    "6": {
+      "name": "Minimalist Urban Backpack",
+      "description": "Durable and stylish backpack for your daily commute. Features a padded laptop compartment and water-resistant fabric.",
+      "category": "Bags"
+    }
+  }
+}

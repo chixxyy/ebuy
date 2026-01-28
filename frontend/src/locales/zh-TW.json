@@ -1,0 +1,117 @@
+{
+  "nav": {
+    "home": "首頁",
+    "products": "商品列表",
+    "login": "登入",
+    "signup": "註冊",
+    "logout": "登出",
+    "add_product": "新增商品"
+  },
+  "home": {
+    "new_collection": "2024 全新系列",
+    "hero_title": "提升您的",
+    "hero_subtitle": "日常質感生活",
+    "hero_desc": "探索我們精選的優質商品，為您的日常生活增添美感與質感。品質與美學的完美結合。",
+    "shop_now": "立即選購",
+    "learn_more": "了解更多",
+    "top_rated": "最高評價",
+    "quality_5_star": "五星級品質",
+    "features": {
+        "shipping": "全館免運",
+        "shipping_desc": "訂單滿 $100 即享免運優惠",
+        "secure": "安全支付",
+        "secure_desc": "100% 安全加密支付系統",
+        "support": "全天候客服",
+        "support_desc": "專業客服團隊隨時為您服務"
+    },
+    "featured_title": "精選商品",
+    "featured_desc": "查看本週最熱門的商品。",
+    "view_all": "查看全部"
+  },
+  "cart": {
+    "title": "購物車",
+    "empty": "您的購物車是空的",
+    "empty_desc": "看來您還沒加入任何商品。瀏覽我們的商品列表，找到您喜歡的東西吧。",
+    "start_shopping": "開始購物",
+    "remove": "移除",
+    "summary": "訂單摘要",
+    "subtotal": "小計",
+    "shipping": "運費",
+    "tax": "稅金",
+    "total": "總計",
+    "checkout": "前往結帳",
+    "free": "免費"
+  },
+  "products": {
+    "title": "商品系列",
+    "subtitle": "探索專屬於您的生活風格。",
+    "search": "搜尋商品...",
+    "filters": "篩選",
+    "price": "價格",
+    "add_to_cart": "加入購物車",
+    "confirm_delete": "您確定要刪除此商品嗎？"
+  },
+  "auth": {
+    "signin_title": "登入您的帳戶",
+    "signup_title": "建立您的帳戶",
+    "username": "使用者名稱",
+    "password": "密碼",
+    "email": "電子郵件",
+    "signin_btn": "登入",
+    "register_btn": "註冊",
+    "no_account": "還沒有帳號？立即註冊",
+    "has_account": "已經有帳號？立即登入",
+    "hero_badge": "新品上市"
+  },
+  "add_product": {
+    "title": "新增商品",
+    "name": "商品名稱",
+    "price": "價格",
+    "category": "分類",
+    "image": "圖片網址",
+    "description": "商品描述",
+    "cancel": "取消",
+    "submit": "新增商品",
+    "categories": {
+        "Audio": "音響",
+        "Furniture": "家具",
+        "Gaming": "電競",
+        "Wearables": "穿戴裝置",
+        "Accessories": "配件",
+        "Bags": "包款",
+        "Other": "其他"
+    }
+  },
+  "items": {
+    "1": {
+      "name": "高級無線耳機",
+      "description": "體驗具備主動降噪與 30 小時續航力的高保真音質。",
+      "category": "音響"
+    },
+    "2": {
+      "name": "人體工學辦公椅",
+      "description": "全可調式人體工學設計，網狀椅背提供絕佳透氣性與腰部支撐。",
+      "category": "家具"
+    },
+    "3": {
+      "name": "機械電競鍵盤",
+      "description": "觸感極佳的機械軸與可自訂 RGB 燈效，打造極致遊戲體驗。耐用鋁合金框架。",
+      "category": "電競"
+    },
+    "4": {
+      "name": "智慧運動手錶",
+      "description": "精準追蹤您的運動、心率與睡眠。具備防水功能與鮮豔 OLED 螢幕。",
+      "category": "穿戴裝置"
+    },
+    "5": {
+      "name": "設計師飛行員墨鏡",
+      "description": "以這款高級飛行員墨鏡展現風格並保護您的雙眼。偏光鏡片減少眩光。",
+      "category": "配件"
+    },
+    "6": {
+      "name": "極簡都會後背包",
+      "description": "適合日常通勤的耐用時尚後背包。具備加厚筆電夾層與防潑水面料。",
+      "category": "包款"
+    }
+  }
+}
