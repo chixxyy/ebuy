@@ -4,12 +4,15 @@ import { useCartStore } from '../stores/cart'
 import { useRouter } from 'vue-router'
 import { ShoppingCart, User, LogOut, Menu, Globe, PlusCircle } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { useLocale } from 'vue-intlayer'
+// import dictionary from '../manual-dictionary.json' // Removed
+import { useContent } from '../composables/useContent'
 
 const authStore = useAuthStore()
 const cartStore = useCartStore()
 const router = useRouter()
-const { locale } = useI18n()
+const { nav, locale } = useContent()
+
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 
@@ -18,9 +21,8 @@ const handleScroll = () => {
 }
 
 const toggleLanguage = () => {
-  const newLocale = locale.value === 'zh-TW' ? 'en' : 'zh-TW'
-  locale.value = newLocale
-  localStorage.setItem('locale', newLocale)
+  // Simple toggle between 'en' and 'zh-TW'
+  locale.value = locale.value === 'zh-TW' ? 'en' : 'zh-TW'
 }
 
 onMounted(() => {
@@ -56,7 +58,7 @@ const logout = () => {
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-8">
-          <router-link to="/products" class="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">{{ $t('nav.products') }}</router-link>
+          <router-link to="/products" class="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors">{{ nav.products }}</router-link>
           
           <div class="h-4 w-px bg-gray-300"></div>
 
@@ -65,16 +67,16 @@ const logout = () => {
             <button 
               @click="toggleLanguage" 
               class="flex items-center gap-1 p-2 text-gray-600 hover:text-indigo-600 transition-colors rounded-full hover:bg-gray-100/50"
-              :title="locale === 'zh-TW' ? 'Switch to English' : '切換至繁體中文'"
+              :title="locale?.toString() === 'zh-TW' ? 'Switch to English' : '切換至繁體中文'"
             >
               <Globe class="w-5 h-5" />
-              <span class="text-sm font-medium w-6 text-center">{{ locale === 'zh-TW' ? 'EN' : '繁' }}</span>
+              <span class="text-sm font-medium w-6 text-center">{{ locale?.toString() === 'zh-TW' ? 'EN' : '繁' }}</span>
             </button>
 
             <template v-if="authStore.user">
                <router-link to="/add-product" class="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-indigo-600 px-3 py-1.5 transition-colors">
                   <PlusCircle class="w-4 h-4" />
-                  <span class="hidden lg:inline">{{ $t('nav.add_product') }}</span>
+                  <span class="hidden lg:inline">{{ nav.add_product }}</span>
                </router-link>
 
                <router-link :to="`/user/${authStore.user.id}`" class="flex items-center gap-2 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-full bg-gray-100/50 hover:bg-gray-100 transition-colors">
@@ -86,9 +88,9 @@ const logout = () => {
                </button>
             </template>
             <template v-else>
-              <router-link to="/login" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">{{ $t('nav.login') }}</router-link>
+              <router-link to="/login" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">{{ nav.login }}</router-link>
               <router-link to="/register" class="text-sm font-medium bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 shadow-lg shadow-indigo-200 hover:shadow-indigo-300 transition-all">
-                {{ $t('nav.signup') }}
+                {{ nav.signup }}
               </router-link>
             </template>
             
@@ -124,26 +126,26 @@ const logout = () => {
     <div v-if="isMobileMenuOpen" class="md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
         <div class="px-4 py-2 space-y-1">
             <router-link to="/products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50" @click="isMobileMenuOpen = false">
-                {{ $t('nav.products') }}
+                {{ nav.products }}
             </router-link>
             
             <template v-if="authStore.user">
                 <router-link to="/add-product" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 bg-gray-50/50" @click="isMobileMenuOpen = false">
-                     {{ $t('nav.add_product') }}
+                     {{ nav.add_product }}
                 </router-link>
                 <router-link :to="`/user/${authStore.user.id}`" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50" @click="isMobileMenuOpen = false">
                     {{ authStore.user.name }}
                 </router-link>
                 <button @click="() => { logout(); isMobileMenuOpen = false }" class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-red-500 hover:bg-red-50">
-                    {{ $t('nav.logout') }}
+                    {{ nav.logout }}
                 </button>
             </template>
             <template v-else>
                 <router-link to="/login" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50" @click="isMobileMenuOpen = false">
-                    {{ $t('nav.login') }}
+                    {{ nav.login }}
                 </router-link>
                 <router-link to="/register" class="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50" @click="isMobileMenuOpen = false">
-                    {{ $t('nav.signup') }}
+                    {{ nav.signup }}
                 </router-link>
             </template>
       </div>

@@ -3,21 +3,21 @@ import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
 import { showAlert, showToast } from '../utils/swal'
-import { useI18n } from 'vue-i18n'
+import { useContent } from '../composables/useContent'
 
 const username = ref('')
 const email = ref('')
 const password = ref('')
 const authStore = useAuthStore()
 const router = useRouter()
-const { t } = useI18n()
+const { auth, alert: alertContent } = useContent()
 
 const handleRegister = async () => {
   if (await authStore.register(username.value, password.value, email.value)) {
-    showToast(t('alert.register_success'))
+    showToast(alert.register_success)
     router.push('/login')
   } else {
-    showAlert(t('alert.error'), t('alert.register_failed'), 'error', t('alert.confirm'))
+    showAlert(alert.error, alert.register_failed, 'error', alert.confirm)
   }
 }
 </script>
@@ -27,34 +27,34 @@ const handleRegister = async () => {
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          {{ $t('auth.signup_title') }}
+          {{ auth.signup_title }}
         </h2>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleRegister">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
-            <label for="username" class="sr-only">{{ $t('auth.username') }}</label>
-            <input id="username" v-model="username" name="username" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" :placeholder="$t('auth.username')">
+            <label for="username" class="sr-only">{{ auth.username }}</label>
+            <input id="username" v-model="username" name="username" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" :placeholder="auth.username">
           </div>
           <div>
-            <label for="email" class="sr-only">{{ $t('auth.email') }}</label>
-            <input id="email" v-model="email" name="email" type="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" :placeholder="$t('auth.email')">
+            <label for="email" class="sr-only">{{ auth.email }}</label>
+            <input id="email" v-model="email" name="email" type="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" :placeholder="auth.email">
           </div>
           <div>
-            <label for="password" class="sr-only">{{ $t('auth.password') }}</label>
-            <input id="password" v-model="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" :placeholder="$t('auth.password')">
+            <label for="password" class="sr-only">{{ auth.password }}</label>
+            <input id="password" v-model="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" :placeholder="auth.password">
           </div>
         </div>
 
         <div>
           <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            {{ $t('auth.register_btn') }}
+            {{ auth.register_btn }}
           </button>
         </div>
       </form>
       <div class="text-center">
         <router-link to="/login" class="font-medium text-indigo-600 hover:text-indigo-500">
-          {{ $t('auth.has_account') }}
+          {{ auth.has_account }}
         </router-link>
       </div>
     </div>

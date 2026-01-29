@@ -3,7 +3,12 @@ import { useProductStore } from '../stores/products'
 import ProductCard from '../components/ProductCard.vue'
 import { Search, Filter, SlidersHorizontal } from 'lucide-vue-next'
 
+// import { useIntlayer } from 'vue-intlayer' // Removed
+// import dictionary from '../manual-dictionary.json' // Removed
+import { useContent } from '../composables/useContent'
+
 const productStore = useProductStore()
+const { products } = useContent()
 </script>
 
 <template>
@@ -13,8 +18,8 @@ const productStore = useProductStore()
       <!-- Header & Controls -->
       <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
-           <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">{{ $t('products.title') }}</h2>
-           <p class="mt-2 text-gray-500">{{ $t('products.subtitle') }}</p>
+           <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">{{ products.title }}</h2>
+           <p class="mt-2 text-gray-500">{{ products.subtitle }}</p>
         </div>
         
         <div class="flex gap-3">
@@ -22,13 +27,13 @@ const productStore = useProductStore()
             <Search class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input 
               type="text" 
-              :placeholder="$t('products.search')" 
+              :placeholder="products.search" 
               class="pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none w-full md:w-64 transition-all"
             >
           </div>
           <button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 text-gray-700 font-medium transition-colors">
             <SlidersHorizontal class="w-5 h-5" />
-            <span class="hidden sm:inline">{{ $t('products.filters') }}</span>
+            <span class="hidden sm:inline">{{ products.filters }}</span>
           </button>
         </div>
       </div>

@@ -3,7 +3,9 @@ import { useCartStore } from '../stores/cart'
 import { useAuthStore } from '../stores/auth'
 import { useProductStore } from '../stores/products'
 import { ShoppingCart, Pencil, Trash2 } from 'lucide-vue-next'
-import { useI18n } from 'vue-i18n'
+import { useIntlayer } from 'vue-intlayer' // Removed
+// import dictionary from '../manual-dictionary.json' // Removed
+import { useContent } from '../composables/useContent'
 import { computed } from 'vue'
 import { showConfirm, showToast } from '../utils/swal'
 
@@ -17,7 +19,7 @@ const props = defineProps({
 const cartStore = useCartStore()
 const authStore = useAuthStore()
 const productStore = useProductStore()
-const { t, te } = useI18n()
+const { products, home, items, alert } = useContent()
 
 const addToCart = () => {
   cartStore.addItem(props.product)
@@ -25,31 +27,28 @@ const addToCart = () => {
 
 const handleDelete = async () => {
     const result = await showConfirm(
-        t('alert.warning'),
-        t('alert.delete_confirm'),
-        t('alert.yes'),
-        t('alert.no')
+        alert.warning,
+        alert.delete_confirm,
+        alert.yes,
+        alert.no
     )
 
     if (result.isConfirmed) {
         await productStore.deleteProduct(props.product.id)
-        showToast(t('alert.delete_success'))
+        showToast(alert.delete_success)
     }
 }
 
 const displayName = computed(() => {
-  const key = `items.${props.product.id}.name`
-  return te(key) ? t(key) : props.product.name
+  return items[String(props.product.id)]?.name || props.product.name
 })
 
 const displayDescription = computed(() => {
-  const key = `items.${props.product.id}.description`
-  return te(key) ? t(key) : props.product.description
+  return items[String(props.product.id)]?.description || props.product.description
 })
 
 const displayCategory = computed(() => {
-  const key = `items.${props.product.id}.category`
-  return te(key) ? t(key) : props.product.category
+  return items[String(props.product.id)]?.category || props.product.category
 })
 
 const canModifyProduct = computed(() => {
@@ -75,22 +74,22 @@ const canModifyProduct = computed(() => {
           class="w-full bg-indigo-600/90 backdrop-blur-sm text-white py-3 rounded-xl font-medium shadow-lg hover:bg-indigo-700 active:scale-95 transition-all flex items-center justify-center gap-2"
         >
           <ShoppingCart class="w-5 h-5" />
-          {{ $t('products.add_to_cart') }}
+          {{ products.add_to_cart }}
         </button>
       </div>
       <!-- Edit/Delete Actions (Only for logged in users) -->
       <div v-if="canModifyProduct" class="absolute top-3 right-3 flex gap-2">
-         <button @click.stop="$router.push(`/edit-product/${product.id}`)" class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-indigo-600 hover:bg-white transition-all" :title="$t('products.edit')">
+         <button @click.stop="$router.push(`/edit-product/${product.id}`)" class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-indigo-600 hover:bg-white transition-all" :title="products.edit">
            <Pencil class="w-4 h-4" />
          </button>
-         <button @click.stop="handleDelete" class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-red-600 hover:bg-white transition-all" :title="$t('products.delete')">
+         <button @click.stop="handleDelete" class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-red-600 hover:bg-white transition-all" :title="products.delete">
            <Trash2 class="w-4 h-4" />
          </button>
       </div>
 
       <!-- Badge (Example) -->
       <div v-if="product.rating > 4.5" class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-semibold text-indigo-600 shadow-sm">
-        {{ $t('home.top_rated') }}
+        {{ home.top_rated }}
       </div>
     </router-link>
 
@@ -98,7 +97,7 @@ const canModifyProduct = computed(() => {
       <div class="flex justify-between items-center mb-1">
           <div class="text-xs font-medium text-indigo-500 uppercase tracking-wider">{{ displayCategory }}</div>
           <router-link v-if="product.seller" :to="`/user/${product.seller.id}`" class="text-xs text-gray-400 hover:text-indigo-600 truncate max-w-[50%]">
-              {{ $t('products.by') }} {{ product.seller.name }}
+              {{ products.by }} {{ product.seller.name }}
           </router-link>
       </div>
       <h3 class="text-lg font-bold text-gray-900 mb-2 leading-tight group-hover:text-indigo-600 transition-colors">
@@ -110,7 +109,7 @@ const canModifyProduct = computed(() => {
       
       <div class="flex items-center justify-between pt-4 border-t border-gray-50 mt-auto">
         <div class="flex flex-col">
-          <span class="text-xs text-gray-400 font-medium">{{ $t('products.price') }}</span>
+          <span class="text-xs text-gray-400 font-medium">{{ products.price }}</span>
           <span class="text-xl font-bold text-gray-900">${{ product.price }}</span>
         </div>
         <div class="text-sm text-gray-500 flex items-center gap-1">

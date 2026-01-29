@@ -1,0 +1,118 @@
+{
+  "internationalization": {
+    "locales": [
+      "en",
+      "zh-Hant"
+    ],
+    "requiredLocales": [
+      "en",
+      "zh-Hant"
+    ],
+    "strictMode": "inclusive",
+    "defaultLocale": "en"
+  },
+  "routing": {
+    "mode": "prefix-no-default",
+    "storage": [
+      "cookie",
+      "header"
+    ],
+    "basePath": ""
+  },
+  "content": {
+    "fileExtensions": [
+      ".content.ts",
+      ".content.js",
+      ".content.cjs",
+      ".content.mjs",
+      ".content.json",
+      ".content.json5",
+      ".content.jsonc",
+      ".content.tsx",
+      ".content.jsx"
+    ],
+    "baseDir": "/Users/daniel/Desktop/ebuy/frontend",
+    "contentDir": [
+      "/Users/daniel/Desktop/ebuy/frontend"
+    ],
+    "codeDir": [
+      "/Users/daniel/Desktop/ebuy/frontend"
+    ],
+    "excludedPath": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.intlayer/**",
+      "**/.next/**",
+      "**/.nuxt/**",
+      "**/.expo/**",
+      "**/.vercel/**",
+      "**/.turbo/**",
+      "**/.tanstack/**"
+    ],
+    "watch": true,
+    "watchedFilesPattern": [
+      "/**/*.content.ts",
+      "/**/*.content.js",
+      "/**/*.content.cjs",
+      "/**/*.content.mjs",
+      "/**/*.content.json",
+      "/**/*.content.json5",
+      "/**/*.content.jsonc",
+      "/**/*.content.tsx",
+      "/**/*.content.jsx"
+    ],
+    "watchedFilesPatternWithPath": [
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.ts",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.js",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.cjs",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.mjs",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.json",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.json5",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.jsonc",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.tsx",
+      "/Users/daniel/Desktop/ebuy/frontend/**/*.content.jsx"
+    ]
+  },
+  "system": {
+    "moduleAugmentationDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/types",
+    "unmergedDictionariesDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/unmerged_dictionary",
+    "remoteDictionariesDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/remote_dictionary",
+    "dictionariesDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/dictionary",
+    "dynamicDictionariesDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/dynamic_dictionary",
+    "fetchDictionariesDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/fetch_dictionary",
+    "typesDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/types",
+    "mainDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/main",
+    "configDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/config",
+    "cacheDir": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/cache",
+    "outputFilesPatternWithPath": "/Users/daniel/Desktop/ebuy/frontend/.intlayer/dictionary/**/*.json"
+  },
+  "editor": {
+    "applicationURL": "",
+    "editorURL": "http://localhost:8000",
+    "cmsURL": "https://app.intlayer.org",
+    "backendURL": "https://back.intlayer.org",
+    "port": 8000,
+    "enabled": true,
+    "dictionaryPriorityStrategy": "local_first",
+    "liveSync": true,
+    "liveSyncPort": 4000,
+    "liveSyncURL": "http://localhost:4000"
+  },
+  "log": {
+    "mode": "default",
+    "prefix": "\u001b[38;5;239m[intlayer] \u001b[0m"
+  },
+  "ai": {},
+  "dictionary": {
+    "fill": true,
+    "contentAutoTransformation": false,
+    "location": "local",
+    "importMode": "static"
+  },
+  "metadata": {
+    "name": "Intlayer",
+    "version": "8.0.0",
+    "doc": "https://intlayer.org/docs"
+  }
+}

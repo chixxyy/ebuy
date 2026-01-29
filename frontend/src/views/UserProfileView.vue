@@ -6,16 +6,17 @@ import { useProductStore } from '../stores/products'
 import ProductCard from '../components/ProductCard.vue'
 import { User, Calendar, Edit2, Save, X } from 'lucide-vue-next'
 import { showAlert, showToast } from '../utils/swal'
-import { useI18n } from 'vue-i18n'
+import { useContent } from '../composables/useContent'
 
 const route = useRoute()
 const authStore = useAuthStore()
 const productStore = useProductStore()
+const { profile, alert } = useContent()
 
 const user = ref(null)
 const loading = ref(true)
 const isEditing = ref(false)
-const { t } = useI18n()
+
 const editForm = ref({
     bio: '',
     name: ''
@@ -68,13 +69,13 @@ const saveProfile = async () => {
             authStore.user = { ...authStore.user, ...updatedUser } // Update auth store
             localStorage.setItem('user', JSON.stringify(authStore.user))
             isEditing.value = false
-            showToast(t('alert.update_success'))
+            showToast(alert.update_success)
         } else {
-            showAlert(t('alert.error'), t('alert.error'), 'error', t('alert.confirm'))
+            showAlert(alert.error, alert.error, 'error', alert.confirm)
         }
     } catch (e) {
         console.error(e)
-        showAlert(t('alert.error'), t('alert.error'), 'error', t('alert.confirm'))
+        showAlert(alert.error, alert.error, 'error', alert.confirm)
     }
 }
 
@@ -101,41 +102,41 @@ onMounted(() => {
                     <div class="flex justify-between items-start">
                         <div class="w-full">
                             <div v-if="isEditing">
-                                 <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('profile.name') }}</label>
+                                 <label class="block text-sm font-medium text-gray-700 mb-1">{{ profile.name }}</label>
                                  <input v-model="editForm.name" type="text" class="mb-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-2">
                                  
-                                 <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('profile.bio') }}</label>
-                                 <textarea v-model="editForm.bio" rows="4" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-2" :placeholder="$t('profile.bio_placeholder')"></textarea>
+                                 <label class="block text-sm font-medium text-gray-700 mb-1">{{ profile.bio }}</label>
+                                 <textarea v-model="editForm.bio" rows="4" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-2" :placeholder="profile.bio_placeholder"></textarea>
                             </div>
                             <div v-else>
                                 <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ user.name }}</h1>
                                 <p v-if="user.bio" class="text-gray-600 text-lg leading-relaxed whitespace-pre-wrap">{{ user.bio }}</p>
                                 <div v-else class="text-gray-400 italic">
-                                    <p v-if="!isCurrentUser">{{ $t('profile.no_bio') }}</p>
+                                    <p v-if="!isCurrentUser">{{ profile.no_bio }}</p>
                                     <button v-else @click="startEdit" class="text-indigo-600 hover:text-indigo-500 font-medium underline decoration-dashed underline-offset-4">
-                                        {{ $t('profile.create') }} &rarr;
+                                        {{ profile.create }} &rarr;
                                     </button>
                                 </div>
                             </div>
                             
                             <div class="flex items-center gap-2 text-gray-400 text-sm mt-4">
                                 <Calendar class="w-4 h-4" />
-                                <span>{{ $t('profile.joined') }} {{ new Date(user.createdAt).toLocaleDateString() }}</span>
+                                <span>{{ profile.joined }} {{ new Date(user.createdAt).toLocaleDateString() }}</span>
                             </div>
                         </div>
 
                         <div v-if="isCurrentUser" class="ml-4 flex-shrink-0">
                             <div v-if="isEditing" class="flex gap-2">
                                 <button @click="cancelEdit" class="flex items-center gap-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
-                                    <X class="w-4 h-4" /> {{ $t('profile.cancel') }}
+                                    <X class="w-4 h-4" /> {{ profile.cancel }}
                                 </button>
                                 <button @click="saveProfile" class="flex items-center gap-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm">
-                                    <Save class="w-4 h-4" /> {{ $t('profile.save') }}
+                                    <Save class="w-4 h-4" /> {{ profile.save }}
                                 </button>
                             </div>
                             <!-- Hide the top edit button if we are showing the large "Create Profile" CTA below -->
                             <button v-else-if="user.bio" @click="startEdit" class="flex items-center gap-1 px-4 py-2 border border-indigo-200 text-indigo-700 rounded-lg hover:bg-indigo-50 transition-colors">
-                                <Edit2 class="w-4 h-4" /> {{ $t('profile.edit') }}
+                                <Edit2 class="w-4 h-4" /> {{ profile.edit }}
                             </button>
                         </div>
                     </div>
@@ -144,7 +145,7 @@ onMounted(() => {
         </div>
 
         <!-- User Products -->
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ $t('profile.user_products', { name: user.name }) }}</h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ profile.user_products(user.name) }}</h2>
         
         <div v-if="user.products.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <ProductCard 
@@ -154,13 +155,13 @@ onMounted(() => {
             />
         </div>
         <div v-else class="text-center py-12 text-gray-500 bg-white rounded-xl border border-gray-100">
-            {{ $t('profile.no_products') }}
+            {{ profile.no_products }}
         </div>
     </div>
     
     <div v-else class="text-center py-20">
-        <h2 class="text-2xl font-bold text-gray-900">{{ $t('profile.user_not_found') }}</h2>
-        <router-link to="/" class="text-indigo-600 hover:text-indigo-500 mt-4 inline-block">{{ $t('profile.return_home') }}</router-link>
+        <h2 class="text-2xl font-bold text-gray-900">{{ profile.user_not_found }}</h2>
+        <router-link to="/" class="text-indigo-600 hover:text-indigo-500 mt-4 inline-block">{{ profile.return_home }}</router-link>
     </div>
   </div>
 </template>
