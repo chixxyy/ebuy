@@ -132,7 +132,7 @@ onMounted(() => {
 
                 <!-- Seller Info -->
                 <div v-if="product.seller" class="bg-white rounded-2xl p-8 shadow-sm">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">Sold by</h3>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">{{ $t('products.sold_by') }}</h3>
                     <div class="flex items-start gap-4">
                         <div class="bg-gray-100 p-3 rounded-full">
                             <User class="w-8 h-8 text-gray-500" />
@@ -143,9 +143,9 @@ onMounted(() => {
                                     {{ product.seller.name }}
                                 </router-link>
                             </div>
-                            <p class="text-gray-600 text-sm mb-4">{{ product.seller.bio || 'No bio provided.' }}</p>
+                            <p class="text-gray-600 text-sm mb-4">{{ product.seller.bio || $t('profile.no_bio') }}</p>
                             <a :href="`mailto:${product.seller.email}`" class="text-indigo-600 font-medium hover:text-indigo-500 text-sm">
-                                Contact Seller
+                                {{ $t('products.contact_seller') }}
                             </a>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ onMounted(() => {
         <div class="mt-12 max-w-3xl">
             <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                 <MessageSquare class="w-6 h-6" />
-                Comments & Questions
+                {{ $t('products.comments_title') }}
             </h2>
 
             <!-- Add Comment -->
@@ -171,7 +171,7 @@ onMounted(() => {
                             v-model="newComment"
                             rows="2" 
                             class="w-full border-0 bg-gray-50 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500"
-                            placeholder="Ask a question or leave a review..."
+                            :placeholder="$t('products.ask_placeholder')"
                         ></textarea>
                         <div class="flex justify-end mt-2">
                             <button 
@@ -180,14 +180,18 @@ onMounted(() => {
                                 class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                             >
                                 <Send class="w-4 h-4" />
-                                Post Comment
+                                {{ $t('products.post_comment') }}
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
             <div v-else class="bg-indigo-50 rounded-xl p-6 mb-8 text-center">
-                <p class="text-indigo-800">Please <router-link to="/login" class="font-bold underline">log in</router-link> to leave a comment.</p>
+                <i18n-t keypath="products.login_to_comment" tag="p" class="text-indigo-800">
+                    <template #link>
+                        <router-link to="/login" class="font-bold underline">{{ $t('products.login_link') }}</router-link>
+                    </template>
+                </i18n-t>
             </div>
 
             <!-- Comment List -->
@@ -205,7 +209,7 @@ onMounted(() => {
                                 v-if="editingCommentId !== comment.id"
                                 @click="startEditComment(comment)" 
                                 class="text-gray-400 hover:text-indigo-600 p-1"
-                                title="Edit"
+                                :title="$t('products.edit')"
                             >
                                 <Edit2 class="w-4 h-4" />
                             </button>
@@ -213,7 +217,7 @@ onMounted(() => {
                                 v-if="editingCommentId !== comment.id"
                                 @click="deleteComment(comment.id)" 
                                 class="text-gray-400 hover:text-red-500 p-1"
-                                title="Delete"
+                                :title="$t('products.delete')"
                             >
                                 <Trash2 class="w-4 h-4" />
                             </button>
@@ -227,15 +231,15 @@ onMounted(() => {
                             class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2 border"
                         ></textarea>
                         <div class="flex justify-end gap-2 mt-2">
-                            <button @click="cancelEditComment" class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
-                            <button @click="saveComment(comment.id)" class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700">Save</button>
+                            <button @click="cancelEditComment" class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">{{ $t('products.cancel') }}</button>
+                            <button @click="saveComment(comment.id)" class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700">{{ $t('products.save') }}</button>
                         </div>
                     </div>
                     <p v-else class="text-gray-700 leading-relaxed whitespace-pre-wrap">{{ comment.content }}</p>
                 </div>
                 
                 <div v-if="product.comments && product.comments.length === 0" class="text-center py-8 text-gray-500">
-                    No comments yet. Be the first to ask!
+                    {{ $t('products.no_comments') }}
                 </div>
             </div>
         </div>

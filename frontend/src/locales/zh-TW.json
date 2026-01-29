@@ -49,7 +49,19 @@
     "filters": "篩選",
     "price": "價格",
     "add_to_cart": "加入購物車",
-    "confirm_delete": "您確定要刪除此商品嗎？"
+    "confirm_delete": "您確定要刪除此商品嗎？",
+    "sold_by": "賣家",
+    "contact_seller": "聯絡賣家",
+    "ask_placeholder": "提問或留下評論...",
+    "post_comment": "發佈留言",
+    "comments_title": "留言與提問",
+    "login_to_comment": "請先 {link} 才能留言。",
+    "login_link": "登入",
+    "no_comments": "尚無留言。成為第一個提問的人！",
+    "save": "儲存",
+    "cancel": "取消",
+    "edit": "編輯",
+    "delete": "刪除"
   },
   "auth": {
     "signin_title": "登入您的帳戶",
