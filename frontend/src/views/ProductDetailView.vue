@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useCartStore } from '../stores/cart'
 import { useAuthStore } from '../stores/auth'
 import { useProductStore } from '../stores/products'
-import { ShoppingCart, Star, MessageSquare, Send, User } from 'lucide-vue-next'
+import { ShoppingCart, Star, MessageSquare, Send, User, Edit2, Trash2 } from 'lucide-vue-next'
 
 const route = useRoute()
 const cartStore = useCartStore()
@@ -42,6 +42,36 @@ const submitComment = async () => {
     if (success) {
         newComment.value = ''
         await fetchProduct() // Refresh comments
+    }
+}
+
+const editingCommentId = ref(null)
+const editContent = ref('')
+
+const startEditComment = (comment) => {
+    editingCommentId.value = comment.id
+    editContent.value = comment.content
+}
+
+const cancelEditComment = () => {
+    editingCommentId.value = null
+    editContent.value = ''
+}
+
+const saveComment = async (commentId) => {
+    if (!editContent.value.trim()) return
+    
+    if (await productStore.updateComment(commentId, editContent.value)) {
+        cancelEditComment()
+        await fetchProduct()
+    }
+}
+
+const deleteComment = async (commentId) => {
+    if (confirm('Are you sure you want to delete this comment?')) {
+        if (await productStore.deleteComment(commentId)) {
+            await fetchProduct()
+        }
     }
 }
 
@@ -151,14 +181,46 @@ onMounted(() => {
 
             <!-- Comment List -->
             <div class="space-y-6">
-                <div v-for="comment in product.comments" :key="comment.id" class="bg-white rounded-xl p-6 shadow-sm">
+                <div v-for="comment in product.comments" :key="comment.id" class="bg-white rounded-xl p-6 shadow-sm group">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                             <div class="font-bold text-gray-900">{{ comment.user.name }}</div>
                             <span class="text-xs text-gray-400">{{ new Date(comment.createdAt).toLocaleDateString() }}</span>
                         </div>
+                        
+                        <!-- Actions for own comments -->
+                        <div v-if="authStore.user && authStore.user.id === comment.user.id" class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button 
+                                v-if="editingCommentId !== comment.id"
+                                @click="startEditComment(comment)" 
+                                class="text-gray-400 hover:text-indigo-600 p-1"
+                                title="Edit"
+                            >
+                                <Edit2 class="w-4 h-4" />
+                            </button>
+                            <button 
+                                v-if="editingCommentId !== comment.id"
+                                @click="deleteComment(comment.id)" 
+                                class="text-gray-400 hover:text-red-500 p-1"
+                                title="Delete"
+                            >
+                                <Trash2 class="w-4 h-4" />
+                            </button>
+                        </div>
                     </div>
-                    <p class="text-gray-700 leading-relaxed">{{ comment.content }}</p>
+
+                    <div v-if="editingCommentId === comment.id">
+                        <textarea 
+                            v-model="editContent" 
+                            rows="3" 
+                            class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2 border"
+                        ></textarea>
+                        <div class="flex justify-end gap-2 mt-2">
+                            <button @click="cancelEditComment" class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
+                            <button @click="saveComment(comment.id)" class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700">Save</button>
+                        </div>
+                    </div>
+                    <p v-else class="text-gray-700 leading-relaxed whitespace-pre-wrap">{{ comment.content }}</p>
                 </div>
                 
                 <div v-if="product.comments && product.comments.length === 0" class="text-center py-8 text-gray-500">

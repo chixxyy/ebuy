@@ -99,6 +99,44 @@ export const useProductStore = defineStore('products', () => {
     }
   }
 
+  async function updateComment(commentId, content) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/comments/${commentId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+        },
+        body: JSON.stringify({ content })
+      })
+      if (!response.ok) throw new Error('Failed to update comment')
+      console.log('Comment updated')
+      return true
+    } catch (e) {
+      error.value = e.message
+      console.error(e)
+      return false
+    }
+  }
+
+  async function deleteComment(commentId) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/comments/${commentId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+        }
+      })
+      if (!response.ok) throw new Error('Failed to delete comment')
+      console.log('Comment deleted')
+      return true
+    } catch (e) {
+      error.value = e.message
+      console.error(e)
+      return false
+    }
+  }
+
   function getProductById(id) {
     return products.value.find(p => p.id === id)
   }
@@ -106,5 +144,5 @@ export const useProductStore = defineStore('products', () => {
   // Initial fetch
   fetchProducts()
 
-  return { products, isLoading, error, fetchProducts, addProduct, updateProduct, deleteProduct, getProductById, addComment }
+  return { products, isLoading, error, fetchProducts, addProduct, updateProduct, deleteProduct, getProductById, addComment, updateComment, deleteComment }
 })
