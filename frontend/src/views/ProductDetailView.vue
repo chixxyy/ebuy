@@ -116,7 +116,7 @@ onMounted(() => {
                     <div class="flex items-center gap-2 mb-6">
                         <Star class="w-5 h-5 text-yellow-400 fill-current" />
                         <span class="font-bold text-gray-900">{{ product.rating }}</span>
-                        <span class="text-gray-500">({{ products.reviews_count(product.reviews) }})</span>
+                        <span class="text-gray-500">({{ products.reviews_count.replace('{count}', product.reviews.length || 0) }})</span>
                     </div>
 
                     <p class="text-gray-600 text-lg leading-relaxed mb-8">{{ product.description }}</p>

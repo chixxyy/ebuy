@@ -25,10 +25,10 @@ const handleSubmit = async () => {
 
     const success = await productStore.addProduct(form.value)
     if (success) {
-        showToast(alert.create_success)
+        showToast(alert.value.create_success)
         router.push('/products')
     } else {
-        showAlert(alert.error, add_product.error || 'Failed to add product', 'error', alert.confirm)
+        showAlert(alert.value.error, add_product.value.error || 'Failed to add product', 'error', alert.value.confirm)
     }
 }
 </script>

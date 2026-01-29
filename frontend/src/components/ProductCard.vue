@@ -40,15 +40,15 @@ const handleDelete = async () => {
 }
 
 const displayName = computed(() => {
-  return items[String(props.product.id)]?.name || props.product.name
+  return items.value[String(props.product.id)]?.name || props.product.name
 })
 
 const displayDescription = computed(() => {
-  return items[String(props.product.id)]?.description || props.product.description
+  return items.value[String(props.product.id)]?.description || props.product.description
 })
 
 const displayCategory = computed(() => {
-  return items[String(props.product.id)]?.category || props.product.category
+  return items.value[String(props.product.id)]?.category || props.product.category
 })
 
 const canModifyProduct = computed(() => {

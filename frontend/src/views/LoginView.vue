@@ -15,7 +15,7 @@ const handleLogin = async () => {
   if (await authStore.login(email.value, password.value)) {
     router.push('/')
   } else {
-    error.value = auth.invalid_credentials
+    error.value = auth.value.invalid_credentials
   }
 }
 </script>

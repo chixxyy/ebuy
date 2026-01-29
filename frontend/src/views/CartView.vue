@@ -10,11 +10,11 @@ const cartStore = useCartStore()
 const { cart, items } = useContent()
 
 const getDisplayName = (item) => {
-  return items[String(item.id)]?.name || item.name
+  return items.value[String(item.id)]?.name || item.name
 }
 
 const getDisplayCategory = (item) => {
-  return items[String(item.id)]?.category || item.category
+  return items.value[String(item.id)]?.category || item.category
 }
 </script>
 

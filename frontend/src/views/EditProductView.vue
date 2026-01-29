@@ -30,7 +30,7 @@ onMounted(async () => {
     if (product) {
         form.value = { ...product }
     } else {
-        await showAlert(alert.error, alert.error || 'Product not found', 'error', alert.confirm)
+        await showAlert(alert.value.error, alert.value.error || 'Product not found', 'error', alert.value.confirm)
         router.push('/products')
     }
 })
@@ -41,10 +41,10 @@ const handleSubmit = async () => {
 
     const success = await productStore.updateProduct(parseInt(route.params.id), form.value)
     if (success) {
-        showToast(alert.update_success)
+        showToast(alert.value.update_success)
         router.push('/products')
     } else {
-        showAlert(alert.error, alert.error || 'Failed to update product', 'error', alert.confirm)
+        showAlert(alert.value.error, alert.value.error || 'Failed to update product', 'error', alert.value.confirm)
     }
 }
 </script>

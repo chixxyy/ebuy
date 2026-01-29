@@ -145,7 +145,7 @@ onMounted(() => {
         </div>
 
         <!-- User Products -->
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ profile.user_products(user.name) }}</h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ profile.user_products.replace('{name}', user.name) }}</h2>
         
         <div v-if="user.products.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <ProductCard 

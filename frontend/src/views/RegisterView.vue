@@ -14,10 +14,10 @@ const { auth, alert: alertContent } = useContent()
 
 const handleRegister = async () => {
   if (await authStore.register(username.value, password.value, email.value)) {
-    showToast(alert.register_success)
+    showToast(alertContent.value.register_success)
     router.push('/login')
   } else {
-    showAlert(alert.error, alert.register_failed, 'error', alert.confirm)
+    showAlert(alertContent.value.error, alertContent.value.register_failed, 'error', alertContent.value.confirm)
   }
 }
 </script>
