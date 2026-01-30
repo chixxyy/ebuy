@@ -17,9 +17,10 @@ model User {
   name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  products  Product[]
+  products  Product[] @relation("UserProducts")
   comments  Comment[]
   bio       String?
+  cart      Cart?
 }
 
 model Product {
@@ -29,11 +30,13 @@ model Product {
   price       Float
   image       String
   category    String
-  rating      Float    @default(0.0)
+  rating      Float    @default(0)
   reviews     Int      @default(0)
-  seller      User     @relation(fields: [sellerId], references: [id])
+  stock       Int      @default(10)
+  seller      User     @relation("UserProducts", fields: [sellerId], references: [id])
   sellerId    Int
   comments    Comment[]
+  cartItems   CartItem[] // Relation to CartItem
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -47,4 +50,22 @@ model Comment {
   productId Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Cart {
+  id        Int        @id @default(autoincrement())
+  userId    Int        @unique
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  cartId    Int
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
 }

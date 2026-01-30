@@ -1,6 +1,7 @@
 <script setup>
 import { useProductStore } from '../stores/products'
 import ProductCard from '../components/ProductCard.vue'
+import ProductSkeleton from '../components/ProductSkeleton.vue'
 import { Search, Filter, SlidersHorizontal } from 'lucide-vue-next'
 
 // import { useIntlayer } from 'vue-intlayer' // Removed
@@ -40,11 +41,19 @@ const { products } = useContent()
 
       <!-- Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        <ProductCard 
-          v-for="product in productStore.products" 
-          :key="product.id" 
-          :product="product" 
-        />
+        <!-- Skeleton Loading -->
+        <template v-if="productStore.isLoading">
+             <ProductSkeleton v-for="n in 8" :key="n" />
+        </template>
+        
+        <!-- Actual Products -->
+        <template v-else>
+            <ProductCard 
+              v-for="product in productStore.products" 
+              :key="product.id" 
+              :product="product" 
+            />
+        </template>
       </div>
     
     </div>
