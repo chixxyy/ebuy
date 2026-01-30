@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Product List",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Log Out",
+    "add_product": "Add Product"
+  },
+  "home": {
+    "new_collection": "2026 New Collection",
+    "hero_title": "Elevate Your",
+    "hero_subtitle": "Daily Quality Life",
+    "hero_desc": "Explore our carefully selected high-quality products, adding beauty and quality to your daily life. The perfect combination of quality and aesthetics.",
+    "shop_now": "Buy Now",
+    "learn_more": "Learn More",
+    "top_rated": "Top Rated",
+    "quality_5_star": "Five-Star Quality",
+    "features": {
+      "shipping": "Free Shipping",
+      "shipping_desc": "Order over $100 for free shipping",
+      "secure": "Secure Payment",
+      "secure_desc": "100% Secure Encryption Payment System",
+      "support": "24/7 Support",
+      "support_desc": "Professional support team available 24/7"
+    },
+    "featured_title": "Recommended Products",
+    "featured_desc": "View this week's hottest products.",
+    "view_all": "View All"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your shopping cart is empty",
+    "empty_desc": "It seems you haven't added any products yet. Browse our product list and find something you like!",
+    "start_shopping": "Start Shopping",
+    "remove": "Remove",
+    "summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Freight",
+    "tax": "Taxes",
+    "total": "Total",
+    "checkout": "Go to Checkout",
+    "free": "Free"
+  },
+  "products": {
+    "title": "Product Series",
+    "subtitle": "Explore your unique lifestyle...",
+    "search": "Search products...",
+    "filters": "Filters",
+    "price": "Price",
+    "add_to_cart": "Add to Cart",
+    "confirm_delete": "Are you sure you want to delete this product?",
+    "sold_by": "Seller",
+    "contact_seller": "Contact Seller",
+    "ask_placeholder": "Ask or leave a comment...",
+    "post_comment": "Post Comment",
+    "comments_title": "Comments and Questions",
+    "login_prompt_start": "Please first ",
+    "login_prompt_end": " before leaving a comment.",
+    "login_link": "Login",
+    "no_comments": "There are no comments yet. Be the first to ask!",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "by": "Seller: ",
+    "reviews_count": "{count} reviews"
+  },
+  "auth": {
+    "signin_title": "Sign in to Your Account",
+    "signup_title": "Create Your Account",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email",
+    "signin_btn": "Sign In",
+    "register_btn": "Register",
+    "no_account": "Don't have an account? Sign up now",
+    "has_account": "Already have an account? Sign in now",
+    "hero_badge": "New arrival",
+    "invalid_credentials": "Invalid credentials"
+  },
+  "add_product": {
+    "title": "Add Product",
+    "name": "Product Name",
+    "price": "Price",
+    "category": "Category",
+    "image": "Image",
+    "description": "Product Description",
+    "cancel": "Cancel",
+    "submit": "Add Product",
+    "categories": {
+      "Audio": "Audio",
+      "Furniture": "Furniture",
+      "Gaming": "Gaming",
+      "Wearables": "Wearables",
+      "Accessories": "Accessories",
+      "Bags": "Bags",
+      "Other": "Other"
+    }
+  },
+  "profile": {
+    "name": "Name",
+    "bio": "Bio",
+    "bio_placeholder": "Tell us about yourself...",
+    "joined": "Joined On",
+    "edit": "Edit Profile",
+    "create": "Create Profile",
+    "save": "Save",
+    "cancel": "Cancel",
+    "no_bio": "No bio provided.",
+    "user_products": "{name}’s products",
+    "no_products": "No products available yet.",
+    "user_not_found": "User not found",
+    "return_home": "Return to homepage"
+  },
+  "alert": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "delete_confirm": "Are you sure to delete?",
+    "delete_success": "Delete success",
+    "update_success": "Update success",
+    "create_success": "Create success",
+    "login_success": "Login success",
+    "register_success": "Register success",
+    "login_failed": "Login Failure",
+    "register_failed": "Registration Failure"
+  },
+  "items": {
+    "1": {
+      "name": "High-End Wireless Headphones",
+      "description": "Experience high-fidelity sound with active noise cancellation and 30 hours of battery life.",
+      "category": "Audio"
+    },
+    "2": {
+      "name": "Ergonomic Office Chair",
+      "description": "Fully adjustable ergonomic design, mesh backrest provides excellent airflow and lumbar support.",
+      "category": "Furniture"
+    },
+    "3": {
+      "name": "Mechanical Gaming Keyboard",
+      "description": "Mechanical switches with exceptional tactile feedback and customizable RGB lighting, crafting an unparalleled gaming experience. Durable aluminum framework.",
+      "category": "E-sports"
+    },
+    "4": {
+      "name": "Smart Fitness Watch",
+      "description": "Precise tracking of your exercise, heart rate, and sleep. Equipped with water-resistance function and vibrant OLED screen.",
+      "category": "Wearable Devices"
+    },
+    "5": {
+      "name": "Designer Pilot Sunglasses",
+      "description": "Show off your style and protect your eyes with this high-end pilot sunglasses. Polarized lens reduces glare.",
+      "category": "Accessories"
+    },
+    "6": {
+      "name": "Minimalist Commuter Backpack",
+      "description": "Suitable for daily commuting, a durable and stylish backpack with reinforced laptop sleeve and water-repellent fabric.",
+      "category": "Packaging"
+    }
+  }
+}
