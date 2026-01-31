@@ -168,6 +168,7 @@ const getDisplayCategory = (item) => {
             </div>
 
             <button
+              @click="$router.push('/checkout')"
               class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 transform active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
             >
               {{ cart.checkout }}

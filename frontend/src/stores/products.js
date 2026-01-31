@@ -58,6 +58,7 @@ export const useProductStore = defineStore("products", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))?.token}`,
         },
         body: JSON.stringify(productData),
       });
@@ -78,12 +79,13 @@ export const useProductStore = defineStore("products", () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))?.token}`,
         },
         body: JSON.stringify(productData),
       });
       if (!response.ok) throw new Error("Failed to update product");
       const updatedProduct = await response.json();
-      const index = products.value.findIndex((p) => p.id === id);
+      const index = products.value.findIndex((p) => p.id == id);
       if (index !== -1) {
         products.value[index] = updatedProduct;
       }
@@ -99,9 +101,12 @@ export const useProductStore = defineStore("products", () => {
     try {
       const response = await fetch(`http://localhost:3000/api/products/${id}`, {
         method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))?.token}`,
+        }
       });
       if (!response.ok) throw new Error("Failed to delete product");
-      products.value = products.value.filter((p) => p.id !== id);
+      products.value = products.value.filter((p) => p.id != id);
       return true;
     } catch (e) {
       error.value = e.message;
@@ -175,7 +180,7 @@ export const useProductStore = defineStore("products", () => {
   }
 
   function getProductById(id) {
-    return products.value.find((p) => p.id === id);
+    return products.value.find((p) => p.id == id);
   }
 
   // Initial fetch

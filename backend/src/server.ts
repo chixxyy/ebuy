@@ -9,6 +9,7 @@ import commentRoutes from "./routes/comment.routes";
 import uploadRoutes from "./routes/upload.routes";
 import cartRoutes from "./routes/cart.routes";
 import inventoryRoutes from "./routes/inventory.routes";
+import paymentRoutes from "./routes/payment.routes";
 import { initSocket } from "./socket";
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.use("/api/comments", commentRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/inventory", inventoryRoutes);
+app.use("/api/payment", paymentRoutes);
 
 // Serve static files from uploads directory
 import path from "path";

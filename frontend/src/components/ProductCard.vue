@@ -60,7 +60,7 @@ const canModifyProduct = computed(() => {
   return (
     authStore.user &&
     props.product.seller &&
-    authStore.user.id === props.product.seller.id
+    authStore.user.id == props.product.seller.id
   );
 });
 
@@ -107,22 +107,7 @@ watch(
         </button>
       </div>
       <!-- Edit/Delete Actions (Only for logged in users) -->
-      <div v-if="canModifyProduct" class="absolute top-3 right-3 flex gap-2">
-        <button
-          @click.stop="$router.push(`/edit-product/${product.id}`)"
-          class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-indigo-600 hover:bg-white transition-all"
-          :title="products.edit"
-        >
-          <Pencil class="w-4 h-4" />
-        </button>
-        <button
-          @click.stop="handleDelete"
-          class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-red-600 hover:bg-white transition-all"
-          :title="products.delete"
-        >
-          <Trash2 class="w-4 h-4" />
-        </button>
-      </div>
+
 
       <!-- Badge (Example) -->
       <div
@@ -132,6 +117,24 @@ watch(
         {{ home.top_rated }}
       </div>
     </router-link>
+
+    <!-- Edit/Delete Actions (Moved outside router-link to be clickable) -->
+    <div v-if="canModifyProduct" class="absolute top-3 right-3 flex gap-2 z-10">
+      <button
+        @click.stop="$router.push(`/edit-product/${product.id}`)"
+        class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-indigo-600 hover:bg-white transition-all"
+        :title="products.edit"
+      >
+        <Pencil class="w-4 h-4" />
+      </button>
+      <button
+        @click.stop="handleDelete"
+        class="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm text-gray-600 hover:text-red-600 hover:bg-white transition-all"
+        :title="products.delete"
+      >
+        <Trash2 class="w-4 h-4" />
+      </button>
+    </div>
 
     <div class="p-5 flex flex-col flex-grow">
       <div class="flex justify-between items-center mb-1">
