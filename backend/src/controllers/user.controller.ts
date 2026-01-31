@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import { Request, Response } from "express";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,25 +15,25 @@ export const getUserProfile = async (req: Request, res: Response) => {
         bio: true,
         createdAt: true,
         products: {
-            include: {
-                seller: {
-                    select: {
-                        id: true,
-                        name: true
-                    }
-                }
-            }
-        }
-      }
+          include: {
+            seller: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     res.json(user);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching user profile', error });
+    res.status(500).json({ message: "Error fetching user profile", error });
   }
 };
 
@@ -46,18 +46,18 @@ export const updateUserProfile = async (req: Request, res: Response) => {
       where: { id: userId },
       data: {
         bio,
-        name
+        name,
       },
       select: {
         id: true,
         name: true,
         email: true,
-        bio: true
-      }
+        bio: true,
+      },
     });
 
     res.json(user);
   } catch (error) {
-    res.status(500).json({ message: 'Error updating profile', error });
+    res.status(500).json({ message: "Error updating profile", error });
   }
 };

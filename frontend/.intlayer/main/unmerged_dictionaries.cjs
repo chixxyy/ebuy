@@ -1,7 +1,4 @@
-
-const dictionaries = {
-
-};
+const dictionaries = {};
 const getUnmergedDictionaries = () => dictionaries;
 
 module.exports.getUnmergedDictionaries = getUnmergedDictionaries;

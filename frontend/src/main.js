@@ -1,14 +1,13 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import { installIntlayer } from 'vue-intlayer'
-import App from './App.vue'
-import router from './router'
-import './style.css'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-const app = createApp(App)
+import App from "./App.vue";
+import router from "./router";
+import "./style.css";
 
-app.use(createPinia())
-app.use(router)
-app.use(installIntlayer)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(createPinia());
+app.use(router);
+
+app.mount("#app");

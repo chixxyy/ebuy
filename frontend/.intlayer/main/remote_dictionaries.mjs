@@ -1,7 +1,4 @@
-
-const dictionaries = {
-
-};
+const dictionaries = {};
 const getRemoteDictionaries = () => dictionaries;
 
 export { getRemoteDictionaries };

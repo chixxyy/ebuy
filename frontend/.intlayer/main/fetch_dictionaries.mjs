@@ -1,7 +1,4 @@
-
-const dictionaries = {
-
-};
+const dictionaries = {};
 const getFetchDictionaries = () => dictionaries;
 
 export { getFetchDictionaries };

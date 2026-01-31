@@ -20,12 +20,12 @@
         "top_rated": "Top Rated",
         "quality_5_star": "5-Star Quality",
         "features": {
-            "shipping": "Free Shipping",
-            "shipping_desc": "On all orders over $100",
-            "secure": "Secure Payment",
-            "secure_desc": "100% secure payment",
-            "support": "24/7 Support",
-            "support_desc": "Dedicated support team"
+          "shipping": "Free Shipping",
+          "shipping_desc": "On all orders over $100",
+          "secure": "Secure Payment",
+          "secure_desc": "100% secure payment",
+          "support": "24/7 Support",
+          "support_desc": "Dedicated support team"
         },
         "featured_title": "Featured Products",
         "featured_desc": "Check out what's trending this week.",
@@ -92,13 +92,13 @@
         "cancel": "Cancel",
         "submit": "Add Product",
         "categories": {
-            "Audio": "Audio",
-            "Furniture": "Furniture",
-            "Gaming": "Gaming",
-            "Wearables": "Wearables",
-            "Accessories": "Accessories",
-            "Bags": "Bags",
-            "Other": "Other"
+          "Audio": "Audio",
+          "Furniture": "Furniture",
+          "Gaming": "Gaming",
+          "Wearables": "Wearables",
+          "Accessories": "Accessories",
+          "Bags": "Bags",
+          "Other": "Other"
         }
       },
       "profile": {
@@ -186,12 +186,12 @@
         "top_rated": "最高評價",
         "quality_5_star": "五星級品質",
         "features": {
-            "shipping": "全館免運",
-            "shipping_desc": "訂單滿 $100 即享免運優惠",
-            "secure": "安全支付",
-            "secure_desc": "100% 安全加密支付系統",
-            "support": "全天候客服",
-            "support_desc": "專業客服團隊隨時為您服務"
+          "shipping": "全館免運",
+          "shipping_desc": "訂單滿 $100 即享免運優惠",
+          "secure": "安全支付",
+          "secure_desc": "100% 安全加密支付系統",
+          "support": "全天候客服",
+          "support_desc": "專業客服團隊隨時為您服務"
         },
         "featured_title": "精選商品",
         "featured_desc": "查看本週最熱門的商品。",
@@ -258,13 +258,13 @@
         "cancel": "取消",
         "submit": "新增商品",
         "categories": {
-            "Audio": "音響",
-            "Furniture": "家具",
-            "Gaming": "電競",
-            "Wearables": "穿戴裝置",
-            "Accessories": "配件",
-            "Bags": "包款",
-            "Other": "其他"
+          "Audio": "音響",
+          "Furniture": "家具",
+          "Gaming": "電競",
+          "Wearables": "穿戴裝置",
+          "Accessories": "配件",
+          "Bags": "包款",
+          "Other": "其他"
         }
       },
       "profile": {

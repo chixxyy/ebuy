@@ -1,22 +1,13 @@
 {
   "internationalization": {
-    "locales": [
-      "en",
-      "zh-Hant"
-    ],
-    "requiredLocales": [
-      "en",
-      "zh-Hant"
-    ],
+    "locales": ["en", "zh-Hant"],
+    "requiredLocales": ["en", "zh-Hant"],
     "strictMode": "inclusive",
     "defaultLocale": "en"
   },
   "routing": {
     "mode": "prefix-no-default",
-    "storage": [
-      "cookie",
-      "header"
-    ],
+    "storage": ["cookie", "header"],
     "basePath": ""
   },
   "content": {
@@ -32,12 +23,8 @@
       ".content.jsx"
     ],
     "baseDir": "/Users/daniel/Desktop/ebuy/frontend",
-    "contentDir": [
-      "/Users/daniel/Desktop/ebuy/frontend"
-    ],
-    "codeDir": [
-      "/Users/daniel/Desktop/ebuy/frontend"
-    ],
+    "contentDir": ["/Users/daniel/Desktop/ebuy/frontend"],
+    "codeDir": ["/Users/daniel/Desktop/ebuy/frontend"],
     "excludedPath": [
       "**/node_modules/**",
       "**/dist/**",

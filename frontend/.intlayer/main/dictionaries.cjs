@@ -1,7 +1,4 @@
-
-const dictionaries = {
-
-};
+const dictionaries = {};
 const getDictionaries = () => dictionaries;
 
 module.exports.getDictionaries = getDictionaries;

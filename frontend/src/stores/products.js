@@ -1,145 +1,198 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
-export const useProductStore = defineStore('products', () => {
-  const products = ref([])
-  const isLoading = ref(false)
-  const error = ref(null)
+export const useProductStore = defineStore("products", () => {
+  const products = ref([]);
+  const isLoading = ref(false);
+  const error = ref(null);
 
   async function fetchProducts() {
-    isLoading.value = true
-    error.value = null
+    isLoading.value = true;
+    error.value = null;
     try {
-      const response = await fetch('http://localhost:3000/api/products')
-      if (!response.ok) throw new Error('Failed to fetch products')
-      products.value = await response.json()
+      const response = await fetch("http://localhost:3000/api/products");
+      if (!response.ok) throw new Error("Failed to fetch products");
+      products.value = await response.json();
     } catch (e) {
-      error.value = e.message
-      console.error(e)
+      error.value = e.message;
+      console.error(e);
     } finally {
-      isLoading.value = false
+      isLoading.value = false;
     }
+  }
+
+  // WebSocket Logic (Socket.IO)
+  let socket = null;
+  function connectWebSocket() {
+    if (socket) return;
+
+    // Dynamic import to avoid SSR issues if any, though here it's SPA
+    import("socket.io-client").then(({ io }) => {
+      socket = io("http://localhost:3000");
+
+      socket.on("connect", () => {
+        console.log("📦 Socket.IO Connected");
+      });
+
+      // Listen for the specific event requested
+      socket.on("INVENTORY_UPDATE", (payload) => {
+        console.log("📦 Received INVENTORY_UPDATE:", payload);
+        const { productId, stock } = payload;
+        // Ensure IDs match type (string vs number)
+        const product = products.value.find((p) => p.id == productId);
+        if (product) {
+          product.stock = stock;
+        }
+      });
+
+      socket.on("disconnect", () => {
+        console.log("📦 Socket.IO Disconnected");
+      });
+    });
+    // ... WS logic above ...
   }
 
   async function addProduct(productData) {
     try {
-      const response = await fetch('http://localhost:3000/api/products', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/api/products", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(productData)
-      })
-      if (!response.ok) throw new Error('Failed to add product')
-      const newProduct = await response.json()
-      products.value.push(newProduct)
-      return true
+        body: JSON.stringify(productData),
+      });
+      if (!response.ok) throw new Error("Failed to add product");
+      const newProduct = await response.json();
+      products.value.push(newProduct);
+      return true;
     } catch (e) {
-      error.value = e.message
-      console.error(e)
-      return false
+      error.value = e.message;
+      console.error(e);
+      return false;
     }
   }
 
   async function updateProduct(id, productData) {
     try {
       const response = await fetch(`http://localhost:3000/api/products/${id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-            'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(productData)
-      })
-      if (!response.ok) throw new Error('Failed to update product')
-      const updatedProduct = await response.json()
-      const index = products.value.findIndex(p => p.id === id)
+        body: JSON.stringify(productData),
+      });
+      if (!response.ok) throw new Error("Failed to update product");
+      const updatedProduct = await response.json();
+      const index = products.value.findIndex((p) => p.id === id);
       if (index !== -1) {
-        products.value[index] = updatedProduct
+        products.value[index] = updatedProduct;
       }
-      return true
+      return true;
     } catch (e) {
-      error.value = e.message
-      console.error(e)
-      return false
+      error.value = e.message;
+      console.error(e);
+      return false;
     }
   }
 
   async function deleteProduct(id) {
     try {
       const response = await fetch(`http://localhost:3000/api/products/${id}`, {
-        method: 'DELETE'
-      })
-      if (!response.ok) throw new Error('Failed to delete product')
-      products.value = products.value.filter(p => p.id !== id)
-      return true
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete product");
+      products.value = products.value.filter((p) => p.id !== id);
+      return true;
     } catch (e) {
-      error.value = e.message
-      console.error(e)
-      return false
+      error.value = e.message;
+      console.error(e);
+      return false;
     }
   }
 
   async function addComment(productId, content) {
     try {
-      const response = await fetch(`http://localhost:3000/api/products/${productId}/comments`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+      const response = await fetch(
+        `http://localhost:3000/api/products/${productId}/comments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
+          },
+          body: JSON.stringify({ content }),
         },
-        body: JSON.stringify({ content })
-      })
-      if (!response.ok) throw new Error('Failed to add comment')
-      return true
+      );
+      if (!response.ok) throw new Error("Failed to add comment");
+      return true;
     } catch (e) {
-      error.value = e.message
-      console.error(e)
-      return false
+      error.value = e.message;
+      console.error(e);
+      return false;
     }
   }
 
   async function updateComment(commentId, content) {
     try {
-      const response = await fetch(`http://localhost:3000/api/comments/${commentId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+      const response = await fetch(
+        `http://localhost:3000/api/comments/${commentId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
+          },
+          body: JSON.stringify({ content }),
         },
-        body: JSON.stringify({ content })
-      })
-      if (!response.ok) throw new Error('Failed to update comment')
-      return true
+      );
+      if (!response.ok) throw new Error("Failed to update comment");
+      return true;
     } catch (e) {
-      error.value = e.message
-      console.error(e)
-      return false
+      error.value = e.message;
+      console.error(e);
+      return false;
     }
   }
 
   async function deleteComment(commentId) {
     try {
-      const response = await fetch(`http://localhost:3000/api/comments/${commentId}`, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
-        }
-      })
-      if (!response.ok) throw new Error('Failed to delete comment')
-      return true
+      const response = await fetch(
+        `http://localhost:3000/api/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
+          },
+        },
+      );
+      if (!response.ok) throw new Error("Failed to delete comment");
+      return true;
     } catch (e) {
-      error.value = e.message
-      console.error(e)
-      return false
+      error.value = e.message;
+      console.error(e);
+      return false;
     }
   }
 
   function getProductById(id) {
-    return products.value.find(p => p.id === id)
+    return products.value.find((p) => p.id === id);
   }
 
   // Initial fetch
-  fetchProducts()
+  fetchProducts();
+  connectWebSocket();
 
-  return { products, isLoading, error, fetchProducts, addProduct, updateProduct, deleteProduct, getProductById, addComment, updateComment, deleteComment }
-})
+  return {
+    products,
+    isLoading,
+    error,
+    fetchProducts,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+    getProductById,
+    addComment,
+    updateComment,
+    deleteComment,
+  };
+});

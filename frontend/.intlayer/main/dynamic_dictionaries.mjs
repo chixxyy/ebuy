@@ -1,7 +1,4 @@
-
-const dictionaries = {
-
-};
+const dictionaries = {};
 const getDynamicDictionaries = () => dictionaries;
 
 export { getDynamicDictionaries };
