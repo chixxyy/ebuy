@@ -37,6 +37,7 @@ app.use("/api/payment", paymentRoutes);
 import path from "path";
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
+app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html lang="en">
@@ -84,6 +85,7 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
     </body>
     </html>
   `);
+});
 });
 
 httpServer.listen(PORT, () => {
