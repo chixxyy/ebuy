@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
     </html>
   `);
 });
-});
+
 
 httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
